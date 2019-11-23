@@ -1,0 +1,49 @@
+{% load static from staticfiles %}
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="{% static 'app/img/logo/logo.png' %}"></a>
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'projects' %}">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'promos' %}">Promos</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">News</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
+                </li>
+            </ul>
+            <!-- <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-5">
+                    <a class="nav-link " href="#">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload video
+                    </a>
+                </li>
+            </ul> -->
+        </div>
+    </div>
+</nav>
+<script>
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop()) {
+            $('.navbar').addClass('onscroll');
+        } else {
+            $('.navbar').removeClass('onscroll');
+        }
+    });
+</script>

@@ -30,6 +30,11 @@ ALLOWED_HOSTS = ['167.71.48.113']
  # Application definition
 
 INSTALLED_APPS = [
+    'pages',
+    'projects',
+    'ckeditor',
+    'ckeditor_uploader',
+    'embed_video',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +59,7 @@ ROOT_URLCONF = 'frogyapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,3 +131,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+CKEDITOR_UPLOAD_PATH = "uploads/"

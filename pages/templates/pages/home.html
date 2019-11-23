@@ -1,0 +1,312 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static from staticfiles %}
+{% load humanize %}
+<header id="main-header">
+    {% include 'partials/_navbar.html' %}
+    <div class="carousel">
+        <div id="cover" class="owl-carousel owl-theme">
+            {% if ads in ads %}
+                {% for ads in ads %}
+                    <div class="item">
+                        <div class="image-box">
+                            <a href="{{ ads.link }}" add target="_blank">
+                                <img src="{{ ads.photo.url }}" class="img-fluid">
+                            </a>
+                            <div class="caption-text">
+                                <h5 class="place text-muted">{{ ads.place }}</h5>
+                                <h1 class="caption-primary">{{ ads.title }}</h1>
+                                <h2 class="caption-secondary primary-color">{{ ads.subtitle }}</h2>
+                                <!-- <a class="caption-link" href="#"><i class="fas fa-play"></i> Play Trailer</a> -->
+                                <div class="form-group" style="margin-top:2rem">
+                                    <a class="button-primary" href="{{ ads.link }}" add target="_blank">
+                                        Book Tickets Here
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% for theatre in theatre_cover %}
+                <div class="item">
+                    <div class="image-box">
+                        <a href="#">
+                            <a href="{% url 'theatre' theatre.id %}">
+                                <img src="{{ theatre.photo_cover.url }}" class="img-fluid">
+                            </a>
+                        </a>
+                        <div class="caption-text">
+                            <h1 class="caption-primary">{{ theatre.title }}</h1>
+                            <h2 class="caption-tertiary primary-color">Theatre / {{ theatre.theatre_type }}</h2>
+                            <!-- <a class="caption-link" href="#"><i class="fas fa-play"></i> Play Trailer</a> -->
+                            <a class="caption-link" href="{% url 'theatre' theatre.id %}"><i class="fas fa-info-circle"></i>
+                                View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for series in series_cover %}
+                <div class="item">
+                    <div class="image-box">
+                        <a href="#">
+                            <a href="{% url 'series' series.id %}">
+                                <img src="{{ series.photo_cover.url }}" class="img-fluid">
+                            </a>
+                        </a>
+                        <div class="caption-text">
+                            <h1 class="caption-primary">{{ series.title }}</h1>
+                            <h2 class="caption-tertiary primary-color">series / {{ series.series_type }}</h2>
+                            <!-- <a class="caption-link" href="#"><i class="fas fa-play"></i> Play Trailer</a> -->
+                            <a class="caption-link" href="{% url 'series' series.id %}"><i class="fas fa-info-circle"></i>
+                                View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for movie in movie_cover %}
+                <div class="item">
+                    <div class="image-box">
+                        <a href="#">
+                            <a href="{% url 'movie' movie.id %}">
+                                <img src="{{ movie.photo_cover.url }}" class="img-fluid">
+                            </a>
+                        </a>
+                        <div class="caption-text">
+                            <h1 class="caption-primary">{{ movie.title }}</h1>
+                            <h2 class="caption-tertiary primary-color">movie / {{ movie.movie_type }}</h2>
+                            <!-- <a class="caption-link" href="#"><i class="fas fa-play"></i> Play Trailer</a> -->
+                            <a class="caption-link" href="{% url 'movie' movie.id %}"><i class="fas fa-info-circle"></i>
+                                View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="owl-theme">
+            <div class="owl-controls">
+                <div class="custom-nav owl-nav"></div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container-fluid">
+        <section class="section-category text-center">
+            <div class="carousel-icon">
+                <div id="carousel-category" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="icon-box">
+                            <a href="#section-theatres">
+                                <i class="fas fa-theater-masks"></i>
+                                <h3 class="icon-text">Theatres</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon-box">
+                            <a href="#section-series">
+                                <i class="fas fa-video"></i>
+                                <h3 class="icon-text">Series</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon-box">
+                            <a href="#section-movies">
+                                <i class="fas fa-film"></i>
+                                <h3 class="icon-text">Movies</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon-box">
+                            <i class="fas fa-tv"></i>
+                            <h3 class="icon-text">Tv Shows</h3>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon-box">
+                            <i class="fas fa-frog"></i>
+                            <h3 class="icon-text">Animation</h3>
+                        </div>
+                    </div>
+                    <!-- <div class="item">
+                        <div class="icon-box">
+                            <i class="fas fa-headphones"></i>
+                            <h3 class="icon-text">Audio</h3>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+        <!----------------Trending--------------->
+        <section class="section-trending" id="section-trending">
+            <h2 class="heading">
+                <div class="bar"></div>
+                <span class="heading-primary"> Latest Projects</span>
+                <span class="heading-tertiary text-muted"> Some of our Latest Projects </span>
+            </h2>
+            <div class="carousel-card">
+                <div id="carousel-small" class="owl-carousel owl-theme">
+                    {% for theatre in theatre_trending %}
+                    <div class="item">
+                        <a href="{% url 'theatre' theatre.id %}">
+                            <div class="card-box">
+                                <img src="{{ theatre.photo_card.url }}" class="img-fluid">
+                                <div class="card-box-layer_top">
+                                    <div class="card-box-text">
+                                        View Details
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    {% for series in series_trending %}
+                    <div class="item">
+                        <a href="{% url 'series' series.id %}">
+                            <div class="card-box">
+                                <img src="{{ series.photo_card.url }}" class="img-fluid">
+                                <div class="card-box-layer_top">
+                                    <div class="card-box-text">
+                                        View Details
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    {% for movie in movie_trending %}
+                    <div class="item">
+                        <a href="{% url 'movie' movie.id %}">
+                            <div class="card-box">
+                                <img src="{{ movie.photo_card.url }}" class="img-fluid">
+                                <div class="card-box-layer_top">
+                                    <div class="card-box-text">
+                                        View Details
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!----------------Theatre--------------->
+        {% if theatres %}
+        <section class="section-theatres" id="section-theatres">
+            <h2 class="heading">
+                <div class="bar"></div>
+                <span class="heading-primary"> Theatres </span>
+                <span class="heading-tertiary text-muted"> Collection of our theatres </span>
+            </h2>
+            <div class="carousel-card">
+                <div id="carousel-small" class="owl-carousel owl-theme">
+                    {% for theatre in theatres %}
+                    <div class="item">
+                        <a href="{% url 'theatre' theatre.id %}">
+                            <div class="card-box">
+                                <img src="{{ theatre.photo_card.url }}" class="img-fluid">
+                                <div class="card-box-layer_top">
+                                    <div class="card-box-text">
+                                        View Details
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        <!-------------Series-------------->
+        {% if series %}
+        <section class="section-series" id="section-series">
+            <h2 class="heading">
+                <div class="bar"></div>
+                <span class="heading-primary"> Series </span>
+                <span class="heading-tertiary text-muted"> Collection of our series </span>
+            </h2>
+            <div class="carousel-card">
+                <div id="carousel-small" class="owl-carousel owl-theme">
+                    {% for series in series %}
+                    <div class="item">
+                        <a href="{% url 'series' series.id %}">
+                            <div class="card-box">
+                                <img src="{{ series.photo_card.url }}" class="img-fluid">
+                                <div class="card-box-layer_top">
+                                    <div class="card-box-text">
+                                        View Details
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        <!-------------Series-------------->
+        {% if movies %}
+        <section class="section-movies" id="section-movies">
+            <h2 class="heading">
+                <div class="bar"></div>
+                <span class="heading-primary"> Movies </span>
+                <span class="heading-tertiary text-muted"> Collection of our movies </span>
+            </h2>
+            <div class="carousel-card">
+                <div id="carousel-small" class="owl-carousel owl-theme">
+                    {% for movie in movies %}
+                    <div class="item">
+                        <a href="{% url 'movie' movie.id %}">
+                            <div class="card-box">
+                                <img src="{{ movie.photo_card.url }}" class="img-fluid">
+                                <div class="card-box-layer_top">
+                                    <div class="card-box-text">
+                                        View Details
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+ 
+        <!-------------tvshows-------------->
+        {% if tvshows %}
+        <section class="section-tvshows">
+            <h2 class="heading">
+                <div class="bar"></div>
+                <span class="heading-primary"> tv shows </span>
+                <span class="heading-tertiary text-muted"> Collection of our tv shows </span>
+            </h2>
+        </section>
+        {% endif %}
+
+        <!-------------Animation-------------->
+        {% if animation %}
+        <section class="section-animation">
+            <h2 class="heading">
+                <div class="bar"></div>
+                <span class="heading-primary"> Animation </span>
+                <span class="heading-tertiary text-muted"> Collection of our animation projects </span>
+            </h2>
+        </section>
+        {% endif %}
+    </div>
+    <div class="container">
+        {% include 'partials/_connect.html' %}
+    </div>
+</main>
+<link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css'%}">
+<script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'app/js/carousel.js' %}"></script>
+{% include 'partials/_footer.html' %}
+{% endblock %}

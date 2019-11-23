@@ -1,0 +1,213 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static from staticfiles %}
+{% load humanize %}
+{% include 'partials/_navbar.html' %}
+<section class="section-explore" id="explore">
+    <div class="col-lg-10 offset-md-1">
+        <ul class="nav nav-pills ml-4 mb-3 mt-5 justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab"
+                    aria-controls="pills-all" aria-selected="true"><i class="fas fa-stream"></i> All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-theatres-tab" data-toggle="pill" href="#pills-theatres" role="tab"
+                    aria-controls="pills-theatres" aria-selected="false"><i class="fas fa-theater-masks"></i>
+                    Theatres</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-series-tab" data-toggle="pill" href="#pills-series" role="tab"
+                    aria-controls="pills-series" aria-selected="false"><i class="fas fa-video"></i> Series</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-movies-tab" data-toggle="pill" href="#pills-movies" role="tab"
+                    aria-controls="pills-movies" aria-selected="false"><i class="fas fa-film"></i> Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-tvshows-tab" data-toggle="pill" href="#pills-tvshows" role="tab"
+                    aria-controls="pills-tvshows" aria-selected="false"><i class="fas fa-tv"></i> Tv Shows</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-animation-tab" data-toggle="pill" href="#pills-animation" role="tab"
+                    aria-controls="pills-animation" aria-selected="false"><i class="fas fa-frog"></i> Animation</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" id="pills-audio-tab" data-toggle="pill" href="#pills-audio" role="tab"
+                    aria-controls="pills-audio" aria-selected="false"><i class="fas fa-headphones"></i> Audio</a>
+            </li> -->
+        </ul>
+        <hr class="my-5 bg-dark">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                <div class="container">
+                    <div class="row mt-5">
+                        {% for theatre in theatres %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <a href="{% url 'theatre' theatre.id %}">
+                                <div class="card">
+                                    <div class="card-img-top">
+                                        <img src="{{ theatre.photo_card.url }}" class="img-fluid">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{ theatre.title }}</h2>
+                                        <h5 class="card-text text-muted text-center">Theatre /
+                                            {{ theatre.theatre_type }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% for series in series %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <a href="{% url 'series' series.id %}">
+                                <div class="card">
+                                    <div class="card-img-top">
+                                        <img src="{{ series.photo_card.url }}" class="img-fluid">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{ series.title }}</h2>
+                                        <h5 class="card-text text-muted text-center">Series /
+                                            {{ series.series_type }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% for movie in movies %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <a href="{% url 'movie' movie.id %}">
+                                <div class="card">
+                                    <div class="card-img-top">
+                                        <img src="{{ movie.photo_card.url }}" class="img-fluid">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{ movie.title }}</h2>
+                                        <h5 class="card-text text-muted text-center">Movie /
+                                            {{ movie.movie_type }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-theatres" role="tabpanel" aria-labelledby="pills-theatres-tab">
+                <div class="container">
+                    <div class="row mt-5">
+                        {% if theatres %}
+                        {% for theatre in theatres %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <a href="{% url 'theatre' theatre.id %}">
+                                <div class="card">
+                                    <div class="card-img-top">
+                                        <img src="{{ theatre.photo_card.url }}" class="img-fluid">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{ theatre.title }}</h2>
+                                        <h5 class="card-text text-muted text-center">Theatre /
+                                            {{ theatre.theatre_type }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="container p-5 text-center" style="border: 1.5px solid #4ecca3; margin-top: 10rem;">
+                            <h2 class="heading-secondary primary-color">No theatres listed at the moment.</h2>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-series" role="tabpanel" aria-labelledby="pills-series-tab">
+                <div class="container">
+                    <div class="row mt-5">
+                        {% if series %}
+                        {% for series in series %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <a href="{% url 'series' series.id %}">
+                                <div class="card">
+                                    <div class="card-img-top">
+                                        <img src="{{ series.photo_card.url }}" class="img-fluid">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{ series.title }}</h2>
+                                        <h5 class="card-text text-muted text-center">Series /
+                                            {{ series.series_type }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="container p-5 text-center" style="border: 1.5px solid #4ecca3; margin-top: 10rem;">
+                            <h2 class="heading-secondary primary-color">No Series listed at the moment.</h2>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-movies" role="tabpanel" aria-labelledby="pills-movies-tab">
+                <div class="container">
+                    <div class="row mt-5">
+                        {% if movies %}
+                        {% for movie in movies %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <a href="{% url 'movie' movie.id %}">
+                                <div class="card">
+                                    <div class="card-img-top">
+                                        <img src="{{ movie.photo_card.url }}" class="img-fluid">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{ movie.title }}</h2>
+                                        <h5 class="card-text text-muted text-center">Movie /
+                                            {{ movie.movie_type }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="container p-5 text-center" style="border: 1.5px solid #4ecca3; margin-top: 10rem;">
+                            <h2 class="heading-secondary primary-color">No movies listed at the moment.</h2>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-tvshows" role="tabpanel" aria-labelledby="pills-tvshows-tab">
+                {% if tvshows %}
+                {% else %}
+                <div class="container p-5 text-center" style="border: 1.5px solid #4ecca3; margin-top: 10rem;">
+                    <h2 class="heading-secondary primary-color">No tv shows available at the moment.</h2>
+                </div>
+                {% endif %}
+            </div>
+            <div class="tab-pane fade" id="pills-animation" role="tabpanel" aria-labelledby="pills-animation-tab">
+                {% if animation %}
+                {% else %}
+                <div class="container p-5 text-center" style="border: 1.5px solid #4ecca3; margin-top: 10rem;">
+                    <h2 class="heading-secondary primary-color">No animation projects available at the moment.</h2>
+                </div>
+                {% endif %}
+            </div>
+            <!-- <div class="tab-pane fade" id="pills-audio" role="tabpanel" aria-labelledby="pills-audio-tab">
+                {% if audio %}
+                {% else %}
+                <div class="container p-5 text-center" style="border: 1.5px solid #4ecca3; margin-top: 10rem;">
+                    <h2 class="heading-secondary primary-color">No audio projects available at the moment.</h2>
+                </div>
+                {% endif %}
+            </div> -->
+        </div>
+    </div>
+</section>
+{% include 'partials/_footer.html' %}
+{% endblock %}

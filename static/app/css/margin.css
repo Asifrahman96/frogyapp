@@ -1,0 +1,38 @@
+#main-header,
+#about-header,
+#talent{
+    margin-top: 8rem;
+}
+
+#articles,
+#single-article,
+#explore,
+#promos,
+#theatre,
+#series,
+#movie,
+#contact,#interaction{
+    margin-top: 12rem;
+}
+.section-trending,
+.section-theatres,
+.section-series,
+.section-movies,
+.section-tvshows,
+.section-animation,
+.section-articles{
+  margin-top: 6rem;
+}
+
+.carousel-card,
+.section-category{
+    margin-top: 4rem;
+}
+
+.section-connect,
+.section-team,
+.section-contact{
+    margin-top: 5rem;
+}
+
+  
