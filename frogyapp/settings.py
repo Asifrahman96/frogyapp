@@ -130,7 +130,7 @@ USE_TZ = True
 AWS_ACCESS_KEY_ID = 'FT2KM7VDHZXWAODMNKAI'
 AWS_SECRET_ACCESS_KEY = 'WxTuUVBmkPrXSqbcCWx68vEu3z/1yGzf5Ow5jOCTIG8'
 AWS_STORAGE_BUCKET_NAME = 'frogyapp-storage'
-AWS_S3_ENDPOINT_URL = 'https://frogyapp-storage.fra1.digitaloceanspaces.com'
+AWS_S3_ENDPOINT_URL = 'fra1.digitaloceanspaces.com'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
