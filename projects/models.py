@@ -1,12 +1,11 @@
 from django.db import models
-from ckeditor.fields import RichTextField
 from embed_video.fields import EmbedVideoField
 
 # Theatre models here.
 class Theatre(models.Model):
     title = models.CharField(max_length=200)
     theatre_type = models.CharField(max_length=100)
-    description = RichTextField(blank=True)
+    description = models.TextField(blank=True)
     year = models.DateField()
     director = models.CharField(max_length=50)
     cast_1 = models.CharField(max_length=50)
@@ -38,7 +37,7 @@ class Theatre(models.Model):
 class Series(models.Model):
     title = models.CharField(max_length=200)
     series_type = models.CharField(max_length=100)
-    description = RichTextField(blank=True)
+    description = models.TextField(blank=True)
     year = models.DateField()
     episodes = models.IntegerField()
     director = models.CharField(max_length=50)
@@ -74,7 +73,7 @@ class Series(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=200)
     movie_type = models.CharField(max_length=100)
-    description = RichTextField(blank=True)
+    description = models.TextField(blank=True)
     year = models.DateField()
     director = models.CharField(max_length=50)
     cast_1 = models.CharField(max_length=50)
@@ -105,7 +104,7 @@ class Movie(models.Model):
 class Tvshow(models.Model):
     title = models.CharField(max_length=200)
     show_type = models.CharField(max_length=100)
-    description = RichTextField(blank=True) 
+    description = models.TextField(blank=True)
     year = models.DateField()
     director = models.CharField(max_length=50)
     cast_1 = models.CharField(max_length=50)
@@ -131,7 +130,7 @@ class Tvshow(models.Model):
 class Animation(models.Model):
     title = models.CharField(max_length=200)
     animation_type = models.CharField(max_length=100)
-    description = RichTextField(blank=True) 
+    description = models.TextField(blank=True)
     year = models.DateField()
     director = models.CharField(max_length=50)
     cast_1 = models.CharField(max_length=50)
