@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'yxjvz8+d&kb^xanq%7=#n2pg31t2imm!ekwgi_vdg1bf5%!ok_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['167.71.48.113']
+ALLOWED_HOSTS = ['167.71.48.113','froggyco.net','www.froggyco.net',]
 
  # Application definition
 
