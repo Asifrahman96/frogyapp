@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -126,11 +127,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+AWS_ACCESS_KEY_ID = 'FT2KM7VDHZXWAODMNKAI'
+AWS_SECRET_ACCESS_KEY = 'WxTuUVBmkPrXSqbcCWx68vEu3z/1yGzf5Ow5jOCTIG8'
+AWS_STORAGE_BUCKET_NAME = 'frogyapp-storage'
+AWS_S3_ENDPOINT_URL = 'https://frogyapp-storage.fra1.digitaloceanspaces.com'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'storage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, 'media'),
+]
+
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
